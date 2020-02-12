@@ -23,6 +23,6 @@
 
 @media (max-width: 767.98px) {
   .city-list {
-    max-height: 45vh;
+    height: 45vh;
   }
 }
