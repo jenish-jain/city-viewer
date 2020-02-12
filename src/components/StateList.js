@@ -1,5 +1,5 @@
 export const stateArray = [
-  "Andaman and Nicobar Islands",
+  "Andaman & Nicobar Islands",
   "Andhra Pradesh",
   "Arunachal Pradesh",
   "Assam",

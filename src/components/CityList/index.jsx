@@ -5,7 +5,7 @@ class CityList extends Component {
   render() {
     const { cities } = this.props;
     return (
-      <div className="col col-md-12 col-lg-6 city-list border">
+      <div className="col-12 col-md-12 col-lg-6 city-list border">
         <div className="selected-state">
           {this.props.selectedState
             ? this.props.selectedState
