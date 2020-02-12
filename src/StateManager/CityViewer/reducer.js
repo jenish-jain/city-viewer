@@ -3,7 +3,8 @@ import {
   UPDATE_CITIES,
   UPDATE_CITIES_LOCATION,
   SET_ZOOM_LEVEL,
-  SET_MAP_CENTER
+  SET_MAP_CENTER,
+  SET_LOADING_STATUS
 } from "./actionTypes";
 
 const initialState = {
@@ -11,7 +12,8 @@ const initialState = {
   mapCenter: { lat: 28.7040592, lng: 77.10249019999999 }, // delhi coordinate
   cities: [],
   cityLocations: [],
-  zoomLevel: 5
+  zoomLevel: 5,
+  isLoading: false
 };
 
 function cityViewer(state = initialState, action) {
@@ -35,6 +37,10 @@ function cityViewer(state = initialState, action) {
     case SET_MAP_CENTER:
       return Object.assign({}, state, {
         mapCenter: action.payload
+      });
+    case SET_LOADING_STATUS:
+      return Object.assign({}, state, {
+        isLoading: action.payload
       });
     default:
       return state;

@@ -1,21 +1,25 @@
 import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
 import { connect } from "react-redux";
-
+import Loader from "react-loader-spinner";
 import Pointer from "../Pointer";
-
+import "./style.css";
 class Map extends Component {
-  // componentDidUpdate(prevProps) {
-  //   if (prevProps.cityLocations !== this.props.cityLocations) {
-  //     console.log("not changed");
-  //   }
-  // }
   render() {
     return (
       <div
-        style={{ height: "100vh", width: "100%" }}
+        style={{ height: "90vh", width: "100%" }}
         className="col col-md-12 col-lg-6"
       >
+        {this.props.isLoading ? (
+          <Loader
+            className="loader"
+            type="ThreeDots"
+            color="#00BFFF"
+            height={100}
+            width={100}
+          />
+        ) : null}
         <GoogleMapReact
           bootstrapURLKeys={{ key: "AIzaSyAUdQnLlhEULAQ9DQhUZrEDeZZR28Z5FGs" }}
           center={{
@@ -47,7 +51,8 @@ const mapStateToProps = state => {
     cities: state.cities,
     zoomLevel: state.zoomLevel,
     mapCenter: state.mapCenter,
-    cityLocations: state.cityLocations
+    cityLocations: state.cityLocations,
+    isLoading: state.isLoading
   };
 };
 

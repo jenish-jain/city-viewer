@@ -3,7 +3,8 @@ import {
   UPDATE_CITIES,
   UPDATE_CITIES_LOCATION,
   SET_ZOOM_LEVEL,
-  SET_MAP_CENTER
+  SET_MAP_CENTER,
+  SET_LOADING_STATUS
 } from "./actionTypes";
 
 export function updateState(selection) {
@@ -24,4 +25,8 @@ export function setZoomLevel(level) {
 
 export function setMapCenter(center) {
   return { type: SET_MAP_CENTER, payload: center };
+}
+
+export function setLoadingStatus(status) {
+  return { type: SET_LOADING_STATUS, payload: status };
 }

@@ -6,7 +6,8 @@ import {
   updateCities,
   updateCitiesLocation,
   setZoomLevel,
-  setMapCenter
+  setMapCenter,
+  setLoadingStatus
 } from "../../StateManager/CityViewer/actionCreator";
 
 let locationArray = [];
@@ -51,6 +52,7 @@ class StateSelector extends Component {
   handleChange = async event => {
     locationArray = [];
     let selection = event.target.value;
+    this.props.setLoadingStatus(true);
     this.props.updateState(selection);
     await this.fetchState(selection);
     this.props.setZoomLevel(7);
@@ -71,6 +73,7 @@ class StateSelector extends Component {
       console.log(locationArray);
       this.props.updateCitiesLocation(locationArray);
       console.log(this.props.cityLocations);
+      this.props.setLoadingStatus(false);
     } catch (error) {
       console.log(error);
     }
@@ -82,7 +85,7 @@ class StateSelector extends Component {
         <select
           value="select State"
           onChange={this.handleChange}
-          className="btn btn-primary dropdown-toggle"
+          className="btn btn-light dropdown-toggle"
         >
           <option value="state">States</option>
           {stateArray.map(state => (
@@ -120,6 +123,9 @@ const mapDispatchToProps = dispatch => {
     },
     setMapCenter: center => {
       dispatch(setMapCenter(center));
+    },
+    setLoadingStatus: status => {
+      dispatch(setLoadingStatus(status));
     }
   };
 };

@@ -4,15 +4,19 @@
 }
 
 .city-list {
-  max-height: 80vh;
+  max-height: 90vh;
   overflow: auto;
 }
 
 .selected-state {
+  text-transform: uppercase;
   position: sticky;
   top: 0px;
+  height: 45px;
   z-index: 5;
-  background-color: white;
-  padding: 7px;
+  background-color: lightblue;
+  padding: 8px;
   border-bottom: 1px solid grey;
+  font-weight: 600;
+  font-size: 20px;
 }

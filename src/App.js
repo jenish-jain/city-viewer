@@ -6,6 +6,7 @@ import Map from "./components/Map";
 function App() {
   return (
     <div className="App">
+      <span>Select a state from dropdown</span>
       <StateSelector />
       <div className="row">
         <CityList />
