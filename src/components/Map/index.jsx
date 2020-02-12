@@ -9,7 +9,7 @@ class Map extends Component {
     return (
       <div
         style={{ height: "90vh", width: "100%" }}
-        className="col col-md-12 col-lg-6"
+        className="col col-md-12 col-lg-6 border"
       >
         {this.props.isLoading ? (
           <Loader
