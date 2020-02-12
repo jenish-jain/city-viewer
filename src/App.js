@@ -7,8 +7,10 @@ function App() {
   return (
     <div className="App">
       <StateSelector />
-      <CityList />
-      <Map />
+      <div className="row">
+        <CityList />
+        <Map />
+      </div>
     </div>
   );
 }

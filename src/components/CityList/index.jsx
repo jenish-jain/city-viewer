@@ -5,7 +5,7 @@ class CityList extends Component {
   render() {
     const { cities } = this.props;
     return (
-      <div>
+      <div className="col col-md-12 col-lg-6">
         {cities.map((city, index) => (
           <div key={index}>{city.City}</div>
         ))}
