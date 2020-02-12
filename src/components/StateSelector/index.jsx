@@ -5,9 +5,9 @@ import {
   updateState,
   updateCities,
   updateCitiesLocation,
-  setZoomLevel
+  setZoomLevel,
+  setMapCenter
 } from "../../StateManager/CityViewer/actionCreator";
-// import { Dropdown } from "react-bootstrap";
 
 let locationArray = [];
 
@@ -16,6 +16,17 @@ class StateSelector extends Component {
     return fetch(
       `https://indian-cities-api-nocbegfhqg.now.sh/cities?State=${selectedState}`
     );
+  };
+
+  fetchState = async state => {
+    const data = await fetch(
+      `https://maps.googleapis.com/maps/api/geocode/json?address=${state},India&key=AIzaSyAUdQnLlhEULAQ9DQhUZrEDeZZR28Z5FGs`
+    );
+    const json = await data.json();
+    console.log(json);
+    const location = json.results[0].geometry.location;
+    // console.log(location, "location of state");
+    this.props.setMapCenter(location);
   };
 
   fetchLocation = async city => {
@@ -38,8 +49,12 @@ class StateSelector extends Component {
   };
 
   handleChange = async event => {
+    locationArray = [];
     let selection = event.target.value;
     this.props.updateState(selection);
+    await this.fetchState(selection);
+    this.props.setZoomLevel(7);
+
     try {
       const cityData = await this.fetchCities(selection);
       const citiesJSON = await cityData.json();
@@ -56,7 +71,6 @@ class StateSelector extends Component {
       console.log(locationArray);
       this.props.updateCitiesLocation(locationArray);
       console.log(this.props.cityLocations);
-      this.props.setZoomLevel(11);
     } catch (error) {
       console.log(error);
     }
@@ -70,6 +84,7 @@ class StateSelector extends Component {
           onChange={this.handleChange}
           className="btn btn-primary dropdown-toggle"
         >
+          <option value="state">States</option>
           {stateArray.map(state => (
             <option key={state} value={state} className="dropdown-item">
               {state}
@@ -102,6 +117,9 @@ const mapDispatchToProps = dispatch => {
     },
     setZoomLevel: level => {
       dispatch(setZoomLevel(level));
+    },
+    setMapCenter: center => {
+      dispatch(setMapCenter(center));
     }
   };
 };

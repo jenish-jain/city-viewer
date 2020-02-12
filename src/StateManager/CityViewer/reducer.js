@@ -2,13 +2,14 @@ import {
   UPDATE_STATE,
   UPDATE_CITIES,
   UPDATE_CITIES_LOCATION,
-  SET_ZOOM_LEVEL
+  SET_ZOOM_LEVEL,
+  SET_MAP_CENTER
 } from "./actionTypes";
 
 const initialState = {
   selectedState: "",
   mapCenter: { lat: 28.7040592, lng: 77.10249019999999 }, // delhi coordinate
-  cities: [{ City: "Aadityana", State: "Gujarat", District: "Porbandar" }],
+  cities: [],
   cityLocations: [],
   zoomLevel: 5
 };
@@ -30,6 +31,10 @@ function cityViewer(state = initialState, action) {
     case SET_ZOOM_LEVEL:
       return Object.assign({}, state, {
         zoomLevel: action.payload
+      });
+    case SET_MAP_CENTER:
+      return Object.assign({}, state, {
+        mapCenter: action.payload
       });
     default:
       return state;

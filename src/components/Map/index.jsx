@@ -1,22 +1,16 @@
 import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
 import { connect } from "react-redux";
-// const Pointer = ({ text }) => (
-//   <div>
-//     <h6>{text}</h6>
-//   </div>
-// );
+
 import Pointer from "../Pointer";
 
 class Map extends Component {
-  componentDidUpdate(prevProps) {
-    if (prevProps.cityLocations !== this.props.cityLocations) {
-      console.log("not changed");
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   if (prevProps.cityLocations !== this.props.cityLocations) {
+  //     console.log("not changed");
+  //   }
+  // }
   render() {
-    // this.fetchLocation(this.props.cities[0]);
-
     return (
       <div
         style={{ height: "100vh", width: "100%" }}
@@ -24,18 +18,14 @@ class Map extends Component {
       >
         <GoogleMapReact
           bootstrapURLKeys={{ key: "AIzaSyAUdQnLlhEULAQ9DQhUZrEDeZZR28Z5FGs" }}
-          defaultCenter={{
+          center={{
             lat: this.props.mapCenter.lat,
             lng: this.props.mapCenter.lng
           }}
-          defaultZoom={this.props.zoomLevel}
+          zoom={this.props.zoomLevel}
         >
-          {/* <Pointer lat={59.955413} lng={30.337844} text="My Marker" />
-          <Pointer lat={21.7164149} lng={69.68997} text="jenish" /> */}
           {this.props.cityLocations != null
             ? this.props.cityLocations.map(loc => (
-                // console.log(loc, "from map object")
-
                 <Pointer
                   key={loc.name}
                   id={loc.name}
