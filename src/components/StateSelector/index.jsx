@@ -78,7 +78,7 @@ class StateSelector extends Component {
 
   render() {
     return (
-      <div className="dropdown">
+      <div className="dropdown m-2">
         <select
           value="select State"
           onChange={this.handleChange}
